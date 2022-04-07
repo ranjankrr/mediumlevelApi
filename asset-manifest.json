@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/mediumlevelApi/static/js/main.d118cae0.js",
+    "index.html": "/mediumlevelApi/index.html",
+    "main.d118cae0.js.map": "/mediumlevelApi/static/js/main.d118cae0.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d118cae0.js"
+  ]
+}
