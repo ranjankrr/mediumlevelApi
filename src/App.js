@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect, useState} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () =>{
+  const [data, setData] = useState([]);
+
+  const getData = async ()=>{
+    const res = await fetch('https://api.publicapis.org/entries');
+    const curentData = await res.json();
+    setData(curentData.entries);
+    
+    
 }
-
+  useEffect(()=>{
+     getData();
+   },[])
+  
+  return(
+     <>
+      <table border="1">
+            <thead>
+                  <tr>
+                      <th>API</th>
+                      <th>Auth</th>
+                      <th>Category</th>
+                      <th>Cors</th>
+                      <th>Description</th>
+                      <th>Link</th>
+                  </tr>
+            </thead>
+            <tbody>
+              {
+                data.map((Ele, ind)=>{
+                  return(
+                    <>
+                       <tr key={ind}>
+                         <th>{Ele.API}</th>
+                         <td>{Ele.Auth}</td>
+                         <td>{Ele.Category}</td>
+                         <td>{Ele.Cors}</td>
+                         <td>{Ele.Description}</td>
+                         <td>{Ele.Link}</td>
+                       </tr>
+                    </>
+                  )
+                })
+              }
+             </tbody>
+      </table>
+    </>
+     )
+  }
 export default App;
